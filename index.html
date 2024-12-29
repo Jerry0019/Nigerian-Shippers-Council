@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Shippers Council - Nigeria Map</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e7f5d1; /* Light green background */
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            background-color: #d3ebaf; /* Light green matching the website */
+            padding: 20px 10px;
+            border-bottom: 5px solid #008000; /* Dark green border at the bottom */
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #008000; /* Dark green text for the main title */
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .header h2 {
+            font-size: 1.2rem;
+            color: #333; /* Dark gray text for the subtitle */
+            margin: 5px 0 0;
+            font-weight: 500;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2E312F 100%);
+            color: white;
+            padding: clamp(0.5rem, 2vw, 1rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: clamp(0.5rem, 2vw, 1rem);
+            text-align: center;
+        }
+
+        .header-logo {
+            width: clamp(30px, 5vw, 50px);
+            height: auto;
+            flex-shrink: 0;
+        }
+
+        h1 {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin: 0;
+        }
+
+        .subtitle {
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            opacity: 0.9;
+            font-weight: 400;
+            margin-top: 0.2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: clamp(1rem, 3vw, 2rem);
+        }
+
+        .map-container {
+            background-color: white;
+            border-radius: clamp(8px, 2vw, 16px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            margin: 0 -1rem;
+        }
+
+        @media (min-width: 640px) {
+            .map-container {
+                margin: 0;
+            }
+        }
+
+        .map-frame {
+            width: 100%;
+            height: clamp(400px, 70vh, 80vh);
+            border: none;
+            display: block;
+        }
+
+        /* Map Keys Section */
+        .map-keys {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #ffffff; /* White container background */
+            border: 5px solid #008000; /* Green border for the container */
+            border-radius: 10px; /* Rounded edges */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-keys h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            color: #333333;
+            text-align: center;
+        }
+
+        .key-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .key-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .key-line {
+            flex-shrink: 0;
+            width: 30px;
+            height: 5px;
+            border-radius: 2px;
+        }
+
+        .key-line.river {
+            background-color: blue; /* Blue line for river links */
+        }
+
+        .key-line.road {
+            background-color: #fbe393; /* Yellowish line for road links */
+        }
+
+        .key-icon {
+            width: 20px;
+            height: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .key-icon.inland {
+            background-image: url('inland-dry-port-icon.png'); /* Replace with actual inland port icon */
+        }
+
+        .key-icon.sea-river {
+            background-image: url('sea-river-port-icon.png'); /* Replace with actual sea/river port icon */
+        }
+
+        .key-label {
+            font-size: 1rem;
+            color: #333333;
+            font-weight: 500;
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) {
+            .map-container {
+                transform: none !important;
+            }
+
+            .key-item {
+                padding: clamp(1rem, 3vw, 1.5rem);
+            }
+
+            .key-item:active {
+                background-color: #f0f0f0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>MAP OF NIGERIA</h1>
+        <h2>SHOWING: INLAND DRY PORTS, VEHICLE TRANSIT AREAS, SEA & RIVER PORTS, DEEP SEAPORTS, AND CARGO AIRPORTS</h2>
+    </div>
+
+    <div class="container">
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/d/u/0/embed?mid=1eCLjhTETjQwgQdaMV15VdKDghDGVJy8&ehbc=2E312F&noprof=1&ll=9.0820,8.6753&z=6&minZoom=6&maxZoom=12" 
+                class="map-frame" 
+                title="Nigeria Shippers Council Map"
+                id="map-frame"
+                allowfullscreen="true"></iframe>
+        </div>
+
+        
+    </div>
+</body>
+</html>
