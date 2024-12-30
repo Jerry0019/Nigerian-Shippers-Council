@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Shippers Council - Nigeria Map</title>
+    <title>DRY PORT MAP</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css" rel="stylesheet">
     <style>
         * {
@@ -11,72 +11,35 @@
             padding: 0;
             -webkit-tap-highlight-color: transparent;
         }
-
-        /* General Styles */
+        
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #e7f5d1; /* Light green background */
+            background-color: #e7f5d1; 
         }
-
-        /* Header Styles */
+        
         .header {
             text-align: center;
-            background-color: #d3ebaf; /* Light green matching the website */
+            background-color: #d3ebaf; 
             padding: 20px 10px;
-            border-bottom: 5px solid #008000; /* Dark green border at the bottom */
+            border-bottom: 5px solid #008000; 
         }
 
         .header h1 {
             font-size: 2.5rem;
-            color: #008000; /* Dark green text for the main title */
+            color: #008000; 
             margin: 0;
             font-weight: bold;
         }
 
         .header h2 {
             font-size: 1.2rem;
-            color: #333; /* Dark gray text for the subtitle */
+            color: #333; 
             margin: 5px 0 0;
             font-weight: 500;
         }
 
-        header {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2E312F 100%);
-            color: white;
-            padding: clamp(0.5rem, 2vw, 1rem);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            gap: clamp(0.5rem, 2vw, 1rem);
-            text-align: center;
-        }
-
-        .header-logo {
-            width: clamp(30px, 5vw, 50px);
-            height: auto;
-            flex-shrink: 0;
-        }
-
-        h1 {
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin: 0;
-        }
-
-        .subtitle {
-            font-size: clamp(0.8rem, 2.5vw, 1rem);
-            opacity: 0.9;
-            font-weight: 400;
-            margin-top: 0.2rem;
-        }
 
         .container {
             max-width: 1200px;
@@ -92,12 +55,6 @@
             margin: 0 -1rem;
         }
 
-        @media (min-width: 640px) {
-            .map-container {
-                margin: 0;
-            }
-        }
-
         .map-frame {
             width: 100%;
             height: clamp(400px, 70vh, 80vh);
@@ -105,87 +62,203 @@
             display: block;
         }
 
-        /* Map Keys Section */
         .map-keys {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 30px auto;
             padding: 20px;
-            background-color: #ffffff; /* White container background */
-            border: 5px solid #008000; /* Green border for the container */
-            border-radius: 10px; /* Rounded edges */
+            background-color: #ffffff;
+            border: 5px solid #008000;
+            border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .map-keys h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            margin-bottom: 1rem;
             font-weight: bold;
             color: #333333;
             text-align: center;
+            background-color: #b3d9ff;
+            padding: 10px;
+            border-radius: 5px;
         }
 
+        .map-keys h3 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: red;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .map-keys h4 {
+            font-size: 1.3rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #000000;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 10px;
+            
+        }
+
+        .key-list-columns {
+         display: flex;
+         justify-content: center; 
+         gap: 40px; 
+         margin: 20px 0;
+         padding: 0 20px; 
+         max-width: 1200px; 
+         margin-left: auto; 
+         margin-right: auto;
+         box-sizing: border-box; 
+}
+
+
         .key-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            flex: 1;
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .left-column, .right-column {
+            width: 48%;
         }
 
         .key-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 15px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
         }
 
         .key-line {
-            flex-shrink: 0;
             width: 30px;
-            height: 5px;
-            border-radius: 2px;
+            height: 6px;
+            border-radius: 3px;
+            flex-shrink: 0;
         }
 
         .key-line.river {
-            background-color: blue; /* Blue line for river links */
+            background-color: blue;
         }
 
-        .key-line.road {
-            background-color: #fbe393; /* Yellowish line for road links */
+        .road-link {
+            width: 30px;
+            height: 6px;
+            background-color: rgb(248, 214, 89);
+            border-top: 2px solid orange;
+            border-bottom: 2px solid orange;
+            border-radius: 3px;
+        }
+
+        .key-line.rail {
+            background-color: black;
+            height: 10px;
+        }
+
+        .key-line.border {
+            height: 2px;
+            background-color: rgb(53, 50, 50);
+        }
+
+        .segment-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+        }
+        
+        .segment-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+        }
+        
+        .segment-1 { background-color: #008000; }
+        .segment-2 { background-color: #000000; }
+        .segment-3 { background-color: #FFA500; }
+        .segment-4 { background-color: #C2185B; }
+        .segment-5 { background-color: #673AB7; }
+
+        .additional-sections {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .section-box {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-box h4 {
+            background: #ff0000;
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .projects-container {
+    display: flex;
+    justify-content: center; 
+    gap: 40px; 
+    margin: 20px 0;
+    padding: 0 20px; 
+    max-width: 1200px; 
+    margin-left: auto; 
+    margin-right: auto;
+    box-sizing: border-box; 
+        }
+
+        .project-column {
+            flex: 1;
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .key-icon {
-            width: 20px;
-            height: 20px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        .key-icon.inland {
-            background-image: url('inland-dry-port-icon.png'); /* Replace with actual inland port icon */
-        }
-
-        .key-icon.sea-river {
-            background-image: url('sea-river-port-icon.png'); /* Replace with actual sea/river port icon */
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
         }
 
         .key-label {
-            font-size: 1rem;
-            color: #333333;
-            font-weight: 500;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
         }
 
-        /* Touch device optimizations */
-        @media (hover: none) {
-            .map-container {
-                transform: none !important;
+        @media (max-width: 768px) {
+            .projects-container,
+            .key-list-columns {
+                flex-direction: column;
+            }
+            
+            .project-column,
+            .left-column,
+            .right-column {
+                width: 100%;
             }
 
-            .key-item {
-                padding: clamp(1rem, 3vw, 1.5rem);
+            .additional-sections {
+                grid-template-columns: 1fr;
             }
-
-            .key-item:active {
-                background-color: #f0f0f0;
-            }
+            
         }
     </style>
 </head>
@@ -201,11 +274,259 @@
                 src="https://www.google.com/maps/d/u/0/embed?mid=1eCLjhTETjQwgQdaMV15VdKDghDGVJy8&ehbc=2E312F&noprof=1&ll=9.0820,8.6753&z=6&minZoom=6&maxZoom=12" 
                 class="map-frame" 
                 title="Nigeria Shippers Council Map"
-                id="map-frame"
                 allowfullscreen="true"></iframe>
         </div>
 
-        
+        <div class="map-keys">
+            <h2>MAP KEY</h2>
+            
+            <div class="key-list-columns">
+              
+                <div class="section-box">
+                    <div class="key-item">
+                        <div class="key-line river"></div>
+                        <span class="key-label">RIVER LINKS</span>
+                    </div>
+                    <div class="key-item">
+                        <div class="key-line road-link"></div>
+                        <span class="key-label">ROAD LINKS</span>
+                    </div>
+                    <div class="key-item">
+                        <div class="key-line rail"></div>
+                        <span class="key-label">RAIL LINK</span>
+                    </div>
+                </div>
+                <div class="section-box">
+                    <div class="key-item">
+                        <div class="key-line border"></div>
+                        <span class="key-label">INTERNATIONAL BOUNDARIES</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./inlanddryport.png" alt="Inland Dry Port Icon" class="key-icon">
+                        <img src="img 3.png" class="key-icon">
+                        <span class="key-label">INLAND DRY PORTS</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img2.png" alt="Sea Port Icon" class="key-icon">
+                        <span class="key-label">SEA AND RIVER PORT</span>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="additional-sections">
+                <div class="section-box">
+                    <h4>SEGMENTS</h4>
+                    <div class="key-list">
+                        <div class="segment-item">
+                            <div class="segment-color segment-1"></div>
+                            <span class="key-label">SEGMENT 1</span>
+                        </div>
+                        <div class="segment-item">
+                            <div class="segment-color segment-2"></div>
+                            <span class="key-label">SEGMENT 2</span>
+                        </div>
+                        <div class="segment-item">
+                            <div class="segment-color segment-3"></div>
+                            <span class="key-label">SEGMENT 3</span>
+                        </div>
+                        <div class="segment-item">
+                            <div class="segment-color segment-4"></div>
+                            <span class="key-label">SEGMENT 4</span>
+                        </div>
+                        <div class="segment-item">
+                            <div class="segment-color segment-5"></div>
+                            <span class="key-label">SEGMENT 5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-box">
+                    <h4>DEEP SEAPORTS</h4>
+                    <div class="key-list">
+                        <div class="key-item">
+                            <img src="./img6.png" alt="Location Icon" class="key-icon">
+                            <span class="key-label">LEKKI - LAGOS (OPERATIONAL)</span>
+                        </div>
+                        <div class="key-item">
+                            <img src="./img6.png" alt="Location Icon" class="key-icon">
+                            <span class="key-label">BADAGRY - LAGOS</span>
+                        </div>
+                        <div class="key-item">
+                            <img src="./img6.png" alt="Location Icon" class="key-icon">
+                            <span class="key-label">IBAKA - AKWA IBOM</span>
+                        </div>
+                        <div class="key-item">
+                            <img src="./img6.png" alt="Location Icon" class="key-icon">
+                            <span class="key-label">OLOKOLA - OGUN</span>
+                        </div>
+                        <div class="key-item">
+                            <img src="./img6.png" alt="Location Icon" class="key-icon">
+                            <span class="key-label">BAKASSI - CROSS RIVER</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-box">
+                    <h4>CARGO AIRPORTS</h4>
+                    <div class="key-list">
+                        <div class="key-item">
+                            <img src="./img5.png" alt="Airplane Icon" class="key-icon">
+                            <span class="key-label">ABUJA</span>
+                        </div>
+                        <div class="key-item">
+                            <img src="./img5.png" alt="Airplane Icon" class="key-icon">
+                            <span class="key-label">LAGOS</span>
+                        </div>
+                        <div class="key-item">
+                            <img src="./img5.png" alt="Airplane Icon" class="key-icon">
+                            <span class="key-label">KANO</span>
+                        </div>
+                        <div class="key-item">
+                            <img src="./img5.png" alt="Airplane Icon" class="key-icon">
+                            <span class="key-label">OWERRI</span>
+                        </div>
+                        <div class="key-item">
+                            <img src="./img5.png" alt="Airplane Icon" class="key-icon">
+                            <span class="key-label">PORTHARCOURT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3>OPERATIONAL</h3>
+            <div class="projects-container">
+                <div class="key-list-columns">
+              
+                    <div class="section-box">
+                        <div class="key-item">
+                            <img src="./img8.png" alt="VTA Icon" class="key-icon">
+                            <span class="key-label">KADUNA VTA & IDP</span>
+                        </div>
+                        <div class="key-item">
+                            <img src="./img8.png" alt="VTA Icon" class="key-icon">
+                            <span class="key-label">ONDO VTA</span>
+                        </div>
+                    </div>
+                    <div class="section-box">
+                        <div class="key-item">
+                            <img src="./img8.png" alt="VTA Icon" class="key-icon">
+                            <span class="key-label">KANO IDP</span>
+                        </div>
+                        <div class="key-item">
+                            <img src="./img8.png" alt="VTA Icon" class="key-icon">
+                            <span class="key-label">KATSINA IDP</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <h3>ON-GOING PROJECTS</h3>
+            <h4>VEHICLE TRANSIT AREAS/INLAND DRY PORTS</h4>
+            <div class="projects-container">
+                <div class="section-box">
+                    <div class="key-item">
+                        <img src="./img4.png" alt="VTA Icon" class="key-icon">
+                        <span class="key-label">ENUGU - VTA</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img4.png" alt="VTA Icon" class="key-icon">
+                        <span class="key-label">KOGI - VTA</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img4.png" alt="VTA Icon" class="key-icon">
+                        <span class="key-label">NIGER - VTA</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img4.png" alt="VTA Icon" class="key-icon">
+                        <span class="key-label">YOBE - VTA</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img4.png" alt="VTA Icon" class="key-icon">
+                        <span class="key-label">SOKOTO - VTA</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img4.png" alt="VTA Icon" class="key-icon">
+                        <span class="key-label">FCT - VTA</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img4.png" alt="VTA Icon" class="key-icon">
+                        <span class="key-label">DELTA - VTA</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img4.png" alt="VTA Icon" class="key-icon">
+                        <span class="key-label">ADAMAWA - VTA</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img4.png" alt="VTA Icon" class="key-icon">
+                        <span class="key-label">ZAMFARA - VTA</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img4.png" alt="VTA Icon" class="key-icon">
+                        <img src="img 3.png" class="key-icon">
+                        <span class="key-label">EDO - VTA & IDP</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img4.png" alt="VTA Icon" class="key-icon">
+                        <img src="img 3.png" class="key-icon">
+                        <span class="key-label">OGUN - VTA & IDP</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img4.png" alt="VTA Icon" class="key-icon">
+                        <img src="img 3.png" class="key-icon">
+                        <span class="key-label">OSUN - VTA & IDP</span>
+                    </div>
+                </div>
+
+                
+                <div class="section-box">
+                    <div class="key-item">
+                        <img src="./img 3.png" alt="Project Icon" class="key-icon">
+                        <span class="key-label">OYO - IDP</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img 3.png" alt="Project Icon" class="key-icon">
+                        <span class="key-label">ABIA - IDP</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img 3.png" alt="Project Icon" class="key-icon">
+                        <span class="key-label">BORNO - IDP</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img 3.png" alt="Project Icon" class="key-icon">
+                        <span class="key-label">OSUN - IDP</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img 3.png" alt="Project Icon" class="key-icon">
+                        <span class="key-label">ANAMBRA - IDP</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img 3.png" alt="Project Icon" class="key-icon">
+                        <span class="key-label">BAUCHI - IDP</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img 3.png" alt="Project Icon" class="key-icon">
+                        <span class="key-label">KEBBI - IDP</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img 3.png" alt="Project Icon" class="key-icon">
+                        <span class="key-label">PLATEAU - IDP</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img7.png" alt="Project Icon" class="key-icon">
+                        <img src="./img7.png" alt="Project Icon" class="key-icon">
+                        <img src="./img7.png" alt="Project Icon" class="key-icon">
+                        <span class="key-label">RIVERS</span>
+                    </div>
+                    <div class="key-item">
+                        <img src="./img7.png" alt="Project Icon" class="key-icon">
+                        <img src="./img7.png" alt="Project Icon" class="key-icon">
+                        <img src="./img7.png" alt="Project Icon" class="key-icon">
+                        <img src="./img7.png" alt="Project Icon" class="key-icon">
+                        <span class="key-label">LAGOS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
