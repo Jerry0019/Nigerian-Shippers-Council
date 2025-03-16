@@ -6,6 +6,7 @@
   "scripts": {
      "start": "node nsc-map-backend/server.js",
   "dev": "nodemon nsc-map-backend/server.js",
+  "postinstall": "npm rebuild bcrypt --update-binary",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
