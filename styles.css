@@ -175,9 +175,13 @@ margin-left: 1px;
 .road-link {
     width: 30px;
     height: 6px;
-    background-color: rgb(248, 214, 89);
-    border-top: 2px solid orange;
-    border-bottom: 2px solid orange;
+    background-color: #8ba5c1
+
+    ;
+    border-top: 2px solid 
+    #6f8eb1;
+    border-bottom: 2px solid 
+    #6f8eb1;
     border-radius: 3px;
 }
 
@@ -244,6 +248,11 @@ margin-left: auto;
 margin-right: auto;
 box-sizing: border-box; 
 }
+
+.red-text {
+    color: red;
+}
+
 
 .project-column {
     flex: 1;
